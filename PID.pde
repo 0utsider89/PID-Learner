@@ -5,7 +5,7 @@
 //PID Learner is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 //You should have received a copy of the GNU General Public License along with PID Learner. If not, see http://www.gnu.org/licenses/.
 
-float Y, Out, Mass, LPos, Pos, LSP, SetPoint, SP, PErr, Err,Int,Der , P, I, D, DT , L;
+float Y, Out, Mass, LPos1, LPos, Pos, LSP, SetPoint, SP, PErr, Err,Int,Der , P, I, D, DT , L;
 int Next = 6;
 int MO = 0;
 int II=0;
@@ -24,7 +24,7 @@ void setup()
   I = 0.000;
   D = 0;
   
-  Pos = height/3;
+  Pos = height/3.5;
   Int = 0;
   DT = 5;
   SetPoint = height/3;
@@ -67,10 +67,19 @@ void draw()
   if(Int < -200) Int=-200;
   if(Int > 200) Int=200;
   
+  stroke(color(50,50,50));
+  line(0, (height/1.3), width, (height/1.3));
+  
+  stroke(color(255,255,255));
+  line(Y, (height/1.3) + LPos1, Y+1, (height/1.3) + (SetPoint - Pos));  
+  LPos1 =  SetPoint - Pos;
+  
   stroke(color(255,0,0));
   line(Y, LPos, Y+1, Pos);
+  
   stroke(color(255,255,0));
   line(Y, LSP, Y+1, SetPoint);
+  
   LPos = Pos;
   LSP = SetPoint;
   Y+=1;
@@ -91,13 +100,19 @@ void draw()
     }
   }
   SetPoint = SP + sin(Y/8)*20;
-  SetPoint+=height/3;
+  SetPoint+=height/3.5;
   if(Y > width){Y=0; background(0);}
   
-  fill(0);
-  stroke(255);
-  rect(10, 0, textWidth(str(Y)), 12 );
   fill(255);
   stroke(255);
-  text(str(Y), 10, 10);
+  text("Error:", 2, height/1.4);
+  
+  fill(255,255,0);
+  stroke(255,255,0);
+  text("Input:", 2, height/6);
+  
+  fill(255,0,0);
+  stroke(255,0,0);
+  text("Output:", 2, height/5.0);
+  
 }
