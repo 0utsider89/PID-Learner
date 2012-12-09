@@ -7,6 +7,14 @@ How-TO:
 To run this you need to have processing install on your computer from this site 
 http://processing.org/
 
+Now you need to download the file from github. Dose not matter where they go on you computer. 
+With Processing open, goto File->Open, look for the place where you downloaed/unextracted the code too. 
+Processing is going to tell you that the code need to be in a folder called "PID", and that it wants to copy the files to its project/sketchbook folder.
+If this dose not work you need to put the files in a folder named "PID", and have them in the folder that processing uses as its project/sketchbook folder.    
+Windows: C:\Users\<your username>\Documents\Processing
+Linux: ~/sketches/
+I don't uses Macs, sorry your on own.
+
 When you start the program it will begin to draw a wave pattern.
 The YELLOW line is the input to the PID loop, and the RED is the error.
 
